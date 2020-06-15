@@ -19,6 +19,8 @@ type Encoder struct {
 	buf    [maxPageSize]byte
 }
 
+var serial_number uint32
+
 // NewEncoder creates an ogg encoder with the given serial ID.
 // Multiple Encoders can be used to encode multiplexed logical streams
 // by giving them distinct IDs. Users must be sure to encode the streams
@@ -31,8 +33,9 @@ type Encoder struct {
 // For more details, see
 // http://xiph.org/ogg/doc/rfc3533.txt and
 // http://xiph.org/ogg/doc/framing.html
-func NewEncoder(id uint32, f os.File) *Encoder {
-	return &Encoder{serial: id, writer: f}
+func NewEncoder(f os.File) *Encoder {
+	serial_number++
+	return &Encoder{serial: serial_number, writer: f}
 }
 
 // EncodeBOS writes a beginning-of-stream packet to the ogg stream,

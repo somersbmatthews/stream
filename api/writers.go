@@ -2,7 +2,7 @@ package api
 
 import (
 	"fmt"
-	"github.com/mccoyst/ogg"
+	"github.com/somersbmatthews/stream/ogg"
 	"os"
 )
 
